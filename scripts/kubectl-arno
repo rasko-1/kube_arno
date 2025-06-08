@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Usage: kubectl arno <resource> <namespace>
+# Example: kubectl arno pod kube-system
+
+if [[ $# -ne 2 ]]; then
+  echo "Usage: kubectl arno <resource> <namespace>"
+  exit 1
+fi
+
+RESOURCE=$1
+NAMESPACE=$2
+
+if [[ "$RESOURCE" != "pod" && "$RESOURCE" != "node" ]]; then
+  echo "Error: <resource> must be 'pod' or 'node'." 
+  exit 2
+fi
+
+
+echo "Resource, Namespace, Name, CPU, Memory"
+
+kubectl top $RESOURCE -n $NAMESPACE --no-headers 2>/dev/null | while read line; do
+    NAME=$(echo $line | awk '{print $1}')
+    CPU=$(echo $line | awk '{print $2}')
+    MEMORY=$(echo $line | awk '{print $3}')
+    echo "$RESOURCE, $NAMESPACE, $NAME, $CPU, $MEMORY"
+done
