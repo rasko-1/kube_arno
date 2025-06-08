@@ -6,8 +6,8 @@ This repository contains a Bash script plugin for kubectl that allows you to qui
 
 1. Copy the `kubectl-arno` script to a directory in your `$PATH` (for example, `/usr/local/bin`) and make it executable:
    ```bash
-   sudo chmod +x scripts/kubectl-arno
-   sudo cp scripts/kubectl-arno /usr/local/bin/
+   sudo chmod +x scripts/kubeplugin/kubectl-arno
+   sudo cp scripts/kubeplugin/kubectl-arno /usr/local/bin/
    ```
 
 2. Use it as a kubectl plugin:
